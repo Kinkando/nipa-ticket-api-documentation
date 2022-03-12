@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Helpdesk Support Ticket Management API</h1>
+    </header>
+    <div class="sidebar">
+        <div class="nav-group">
+            <p class="nav-header">Introduction</p>
+            <li><a href="#info">Information</a></li>
+            <li><a href="#http-response">HTTP Response</a></li>
+            <li><a href="#error-response">JSON Error Response</a></li>
+        </div>
+        <hr>
+        <div class="nav-group">
+            <p class="nav-header">Reference</p>
+            <li><a href="#all-tickets">All tickets</a></li>
+            <li><a href="#status-tickets">Specific status tickets</a></li>
+            <li><a href="#id-ticket">Specific id ticket</a></li>
+            <li><a href="#create-ticket">Create ticket</a></li>
+            <li><a href="#update-ticket">Update ticket</a></li>
+        </div>
+    </div>
+    <section>
+        <!-- Introduction Card -->
+        <div class="card">
+            <div class="card-header">
+                <h1>
+                    <p>Introduction</p>
+                </h1>
+            </div>
+            <div class="card-body">
+                <div class="subtitle">
+                    <h2 id="info" class="title">Information</h2>
+                    <h4>
+                        <div class="sub-detail">
+                            Base URL : <span class="square-block">https://nipa-ticket-api.herokuapp.com</span>
+                        </div>
+                        <div class="sub-detail">Endpoints</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Method</th>
+                                    <th>Endpoint</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="square-block">GET</span></td>
+                                    <td>
+                                        <span class="square-block">/ticket/all</span>
+                                        <span class="square-block">/ticket/filter/<span class="params">{status}</span></span>
+                                        <span class="square-block">/ticket/get/<span class="params">{id}</span></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="square-block">POST</span></td>
+                                    <td><span class="square-block">/ticket/create</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="square-block">PUT</span></td>
+                                    <td><span class="square-block">/ticket/update</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </h4>
+                </div>
+                <div class="subtitle">
+                    <h2 id="http-response" class="title">HTTP Response</h2>
+                    <h4>
+                        <div class="sub-detail">
+                            <li><span class="square-block">200</span> - OK, The request was successful</li>
+                        </div>
+                        <div class="sub-detail">
+                            <li><span class="square-block">404</span> - Not Found, Resource was not found</li>
+                        </div>
+                    </h4>
+                </div>
+                <div class="subtitle">
+                    <h2 id="error-response" class="title">Error Response</h2>
+                    <h4>
+                        <div class="sub-detail">This is a typical error response</div>
+                        <div class="response">
+                            [<br> &nbsp;&nbsp;&nbsp;status : false,<br> &nbsp;&nbsp;&nbsp;message : "Invalid information",<br> &nbsp;&nbsp;&nbsp;tickets : null,<br> ]
+                        </div>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <!-- Reference Card -->
+        <div class="card">
+            <div class="card-header">
+                <h1>
+                    <p>Reference</p>
+                </h1>
+            </div>
+            <div class="card-body">
+                <div class="subtitle">
+                    <h2 id="all-tickets" class="title">All tickets</h2>
+                    <h4>
+                        <div class="sub-detail">Description: Request all tickets information and sort by id (default), status and latest_update_timestamp (optional)</div>
+                        <div class="sub-detail">Method: <span class="square-block">GET</span></div>
+                        <div class="sub-detail">Endpoint: <span class="square-block">/ticket/all</span></div>
+                        <div class="sub-detail">Parameters (Optional)</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Argument</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>status_sort</td>
+                                    <td>
+                                        <span class="square-block">asc</span>
+                                        <span class="square-block">desc</span>
+                                    </td>
+                                    <td>Sort tickets by status order by ascending or descending</td>
+                                </tr>
+                                <tr>
+                                    <td>update_sort</td>
+                                    <td>
+                                        <span class="square-block">asc</span>
+                                        <span class="square-block">desc</span>
+                                    </td>
+                                    <td>Sort tickets by latest_update_timestamp order by ascending or descending</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <div class="sub-detail">Examples</div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/all?status_sort=asc</span> - Request all tickets information sort by status order by ascending
+                        </div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/all?status_sort=desc&update_sort=asc</span> - Request all tickets information sort by status, latest_update_timestamp order by descending, ascending respectively
+                        </div>
+                        <div class="sub-detail">Response</div>
+                        <div class="response">
+                            [<br>&nbsp;&nbsp;&nbsp;abc<br>]
+                        </div> -->
+                    </h4>
+                </div>
+                <div class="subtitle">
+                    <h2 id="status-tickets" class="title">Specific status tickets</h2>
+                    <h4>
+                        <div class="sub-detail">Description: Request specific status tickets information and sort by id (default), latest_update_timestamp (optional)</div>
+                        <div class="sub-detail">Method: <span class="square-block">GET</span></div>
+                        <div class="sub-detail">Endpoint: <span class="square-block">/ticket/filter/<span class="params">{status}</span></span>
+                            <div class="sub-detail">
+                                <li>
+                                    <span class="params">status</span> : specific status tickets (pending, accepted, solved, rejected)
+                                </li>
+                            </div>
+                        </div>
+                        <div class="sub-detail">Parameters (Optional)</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Argument</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sort</td>
+                                    <td>
+                                        <span class="square-block">asc</span>
+                                        <span class="square-block">desc</span>
+                                    </td>
+                                    <td>Sort specific status tickets by latest_update_timestamp order by ascending or descending</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <div class="sub-detail">Examples</div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/filter/<span class="params">resolved</span></span> - Request only resolved tickets information sort by id order by ascending (DEFAULT)
+                        </div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/filter/<span class="params">accepted</span>?sort=asc</span> - Request only accepted tickets information sort by latest_update_timestamp order by ascending
+                        </div>
+                        <div class="sub-detail">Response</div>
+                        <div class="response">
+                            [<br>&nbsp;&nbsp;&nbsp;abc<br>]
+                        </div> -->
+                    </h4>
+                </div>
+                <div class="subtitle">
+                    <h2 id="id-ticket" class="title">Specific id ticket</h2>
+                    <h4>
+                        <div class="sub-detail">Description: Request specific id ticket information</div>
+                        <div class="sub-detail">Method: <span class="square-block">GET</span></div>
+                        <div class="sub-detail">Endpoint: <span class="square-block">/ticket/get/<span class="params">{id}</span></span>
+                            <div class="sub-detail">
+                                <li>
+                                    <span class="params">id</span> : specific id tickets (integer)
+                                </li>
+                            </div>
+                        </div>
+                        <!-- <div class="sub-detail">Examples</div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/get/<span class="params">3</span></span> - Request ticket information that have id is 3
+                        </div>
+                        <div class="sub-detail">Response</div>
+                        <div class="response">
+                            [<br>&nbsp;&nbsp;&nbsp;abc<br>]
+                        </div> -->
+                    </h4>
+                </div>
+                <div class="subtitle">
+                    <h2 id="create-ticket" class="title">Create ticket</h2>
+                    <h4>
+                        <div class="sub-detail">Description: Request to create a new ticket</div>
+                        <div class="sub-detail">Method: <span class="square-block">POST</span></div>
+                        <div class="sub-detail">Endpoint: <span class="square-block">/ticket/create</span></div>
+                        <div class="sub-detail">Parameters (Essential)</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Argument</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>title</td>
+                                    <td>String</td>
+                                    <td>Ticket title</td>
+                                </tr>
+                                <tr>
+                                    <td>description</td>
+                                    <td>String</td>
+                                    <td>Ticket description</td>
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>String</td>
+                                    <td>Requester full name</td>
+                                </tr>
+                                <tr>
+                                    <td>tel</td>
+                                    <td>String (telephone number)</td>
+                                    <td>Requester telephone number</td>
+                                </tr>
+                                <tr>
+                                    <td>email</td>
+                                    <td>String (email)</td>
+                                    <td>Requester email</td>
+                                </tr>
+                                <tr>
+                                    <td>channel</td>
+                                    <td>
+                                        <span class="square-block">Facebook</span>
+                                        <span class="square-block">Line</span>
+                                        <span class="square-block">Web Form</span>
+                                    </td>
+                                    <td>Contact channel to reply</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- <div class="sub-detail">Examples</div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/create?title=Defective product&description=Want to return the product to company&name=Somchai Bangrak&tel=0832314765&email=somchai@hotmail.com&channel=Facebook</span> - Request only resolved
+                            tickets information sort by id order by ascending (DEFAULT)
+                        </div>
+                        <div class="sub-detail">Response</div>
+                        <div class="response">
+                            [<br>&nbsp;&nbsp;&nbsp;abc<br>]
+                        </div> -->
+                    </h4>
+                </div>
+                <div class="subtitle">
+                    <h2 id="update-ticket" class="title">Update ticket</h2>
+                    <h4>
+                        <div class="sub-detail">Description: Update specific id ticket information (can update partial information)</div>
+                        <div class="sub-detail">Method: <span class="square-block">PUT</span></div>
+                        <div class="sub-detail">Endpoint: <span class="square-block">/ticket/update</span></div>
+                        <div class="sub-detail">Parameters</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Parameter</th>
+                                    <th>Argument</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id (Essential)</td>
+                                    <td>Integer</td>
+                                    <td>Sort specific status tickets by latest_update_timestamp order by ascending or descending</td>
+                                </tr>
+                                <tr>
+                                    <td>title (Optional)</td>
+                                    <td>String</td>
+                                    <td>Ticket title</td>
+                                </tr>
+                                <tr>
+                                    <td>description (Optional)</td>
+                                    <td>String</td>
+                                    <td>Ticket description</td>
+                                </tr>
+                                <tr>
+                                    <td>name (Optional)</td>
+                                    <td>String</td>
+                                    <td>Requester name</td>
+                                </tr>
+                                <tr>
+                                    <td>tel (Optional)</td>
+                                    <td>String (telephone number)</td>
+                                    <td>Requester telephone number</td>
+                                </tr>
+                                <tr>
+                                    <td>email (Optional)</td>
+                                    <td>String (email)</td>
+                                    <td>Requester email</td>
+                                </tr>
+                                <tr>
+                                    <td>channel (Optional)</td>
+                                    <td>
+                                        <span class="square-block">Facebook</span>
+                                        <span class="square-block">Line</span>
+                                        <span class="square-block">Web Form</span>
+                                    </td>
+                                    <td>Contact channel to reply</td>
+                                </tr>
+                                <tr>
+                                    <td>status (Optional)</td>
+                                    <td>
+                                        <span class="square-block">pending</span>
+                                        <span class="square-block">accepted</span>
+                                        <span class="square-block">resolved</span>
+                                        <span class="square-block">rejected</span>
+                                    </td>
+                                    <td>Status of ticket</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- <div class="sub-detail">Examples</div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/filter/<span class="params">resolved</span></span> - Request only resolved tickets information sort by id order by ascending (DEFAULT)
+                        </div>
+                        <div class="sub-detail">
+                            <span class="square-block">/ticket/filter/<span class="params">accepted</span>?sort=asc</span> - Request only accepted tickets information sort by latest_update_timestamp order by ascending
+                        </div>
+                        <div class="sub-detail">Response</div>
+                        <div class="response">
+                            [<br>&nbsp;&nbsp;&nbsp;abc<br>]
+                        </div> -->
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

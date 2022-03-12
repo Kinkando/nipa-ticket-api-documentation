@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@100&display=swap');
+:root {
+    --background-color: rgb(34, 31, 31);
+    --foreground-color: #fff;
+    --primary-color: #333;
+    --secondary-color: rgb(54, 188, 155);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Prompt', sans-serif;
+    font-weight: bold;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+p {
+    text-transform: uppercase;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+header h1 {
+    color: var(--foreground-color);
+}
+
+.sidebar {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    background-color: var(--primary-color);
+    width: 250px;
+    height: 100%;
+    /* disable highlight text */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-y: auto;
+    /* height: calc(100vh - 50px); */
+}
+
+.sidebar::-webkit-scrollbar {
+    /* hidden scrollbar */
+    display: none;
+}
+
+.nav-group {
+    padding: 10px 20px;
+}
+
+.nav-group p {
+    margin: 10px 0 0 0;
+    padding: 10px;
+    color: var(--secondary-color);
+}
+
+.nav-group li {
+    position: relative;
+    list-style: none;
+    width: 100%;
+    height: 40px;
+}
+
+.nav-group li a {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: var(--foreground-color);
+    border-radius: 20px;
+}
+
+.nav-group li a:hover {
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+}
+
+.sidebar hr {
+    position: relative;
+    left: 20px;
+    width: 210px;
+    height: 1px;
+    border: none;
+    background-color: #777;
+}
+
+section {
+    position: relative;
+    left: 250px;
+    top: 50px;
+    width: calc(100% - 250px);
+    padding: 20px;
+    background-color: rgb(65, 65, 65);
+}
+
+.card {
+    position: relative;
+    display: grid;
+    color: var(--foreground-color);
+    background-color: var(--primary-color);
+    padding: 10px 15px;
+    border-radius: 10px;
+    overflow: auto;
+    box-shadow: 2px 2px 2px 2px var(--background-color);
+}
+
+.card-header h1 {
+    padding: 15px 30px;
+    color: var(--secondary-color);
+}
+
+.card-header::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    display: grid;
+    background-color: var(--secondary-color);
+}
+
+.card-body h2 {
+    padding: 70px 0 0 30px;
+    position: relative;
+    top: -50px;
+    /* background-color: red; */
+}
+
+.card-body h4 {
+    position: relative;
+    /* background-color: blue; */
+    top: -40px;
+    padding: 0 20px;
+}
+
+.square-block {
+    padding: 3px 8px;
+    border-radius: 5px;
+    background-color: var(--foreground-color);
+    color: var(--background-color);
+    width: auto;
+    display: inline-block;
+    width: auto;
+    /* flex-wrap: wrap; */
+}
+
+.sub-detail {
+    margin: 0 0 10px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+}
+
+td,
+th {
+    border: 1px solid var(--foreground-color);
+    padding: 10px;
+}
+
+td .square-block {
+    margin: 5px 3px;
+}
+
+.response {
+    width: 100%;
+    background-color: #444;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.title {
+    display: inline-block
+}
+
+.title::after {
+    content: "";
+    display: block;
+    width: auto;
+    height: 1px;
+    background-color: var(--secondary-color);
+}
+
+.params {
+    color: red;
+}
+
+.sub-detail>li {
+    margin-top: 4px;
+}
+
+
+/* .response .json {
+    position: relative;
+    left: 20px;
+}
+
+.response .json::before {
+    content: '{';
+    display: grid;
+    position: relative;
+    left: -20px;
+}
+
+.response .json::after {
+    content: '}';
+    display: grid;
+    position: relative;
+    left: -20px;
+} */
